@@ -4,39 +4,46 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo 'Pulling code from repository...'
                 checkout scm
             }
         }
 
-        stage('Build') {
+        stage('Build Docker Image') {
             steps {
-                echo 'Validating website files...'
-                bat 'dir'
+                script {
+                    dockerImage = docker.build("jenkins-static-site")
+                }
             }
         }
 
-        stage('Deploy') {
+        stage('Run Container') {
             steps {
-                echo 'Deploying to local folder...'
-                bat 'deploy.bat'
+                script {
+                    // Stop old container
+                    sh 'docker rm -f static-container || true'
+
+                    // Start new container
+                    sh 'docker run -d -p 8080:80 --name static-container jenkins-static-site'
+                }
             }
         }
 
-        stage('Verify') {
+        stage('Verify Deployment') {
             steps {
-                echo 'Checking if deployment succeeded...'
-                bat 'if exist C:\\inetpub\\wwwroot\\index.html (echo Deployment Verified!) else (echo Deployment Failed!)'
+                script {
+                    sh "sleep 3"
+                    sh "curl -I http://localhost:8080"
+                }
             }
         }
     }
 
     post {
         success {
-            echo '✅ Website deployed successfully!'
+            echo '🚀 Static website deployed using Docker!'
         }
         failure {
-            echo '❌ Pipeline failed!'
+            echo '❌ Deployment failed!'
         }
     }
 }
