@@ -1,8 +1,12 @@
-FROM nginx:alpine
+FROM node:18
 
-# Copy website content to nginx default root
-COPY site /usr/share/nginx/html
+WORKDIR /app
 
-EXPOSE 80
+COPY app/package*.json ./
+RUN npm install
 
-CMD ["nginx", "-g", "daemon off;"]
+COPY app .
+
+EXPOSE 3000
+
+CMD ["npm", "start"]

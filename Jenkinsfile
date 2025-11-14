@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script {
                     bat 'docker rm -f static-container || true'
-                    bat 'docker run -d -p 9090:80 --name static-container jenkins-static-site'
+                    bat 'docker run -d -p 9090:3000 --name static-container jenkins-node-site'
                 }
             }
         }
