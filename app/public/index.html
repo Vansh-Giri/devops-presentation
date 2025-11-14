@@ -9,9 +9,10 @@
 
     <header>
         <h1>DevOps Presentation</h1>
-        <p class="subtitle">Automated Deployment using Jenkins + Docker</p>
+        <p class="subtitle">Automated Deployment using Jenkins + Docker + Node.js</p>
     </header>
 
+    <!-- TEAM SECTION -->
     <section class="team-section">
         <h2>Our Team</h2>
 
@@ -19,28 +20,28 @@
 
             <!-- Member 1 -->
             <div class="member-card">
-                <div class="photo">Add Image Here</div>
+                <img src="images/vasu.jpg" class="photo">
                 <h3>Vasu Verma</h3>
                 <p>Reg No: 229303242</p>
             </div>
 
             <!-- Member 2 -->
             <div class="member-card">
-                <div class="photo">Add Image Here</div>
+                <img src="images/abhigyan.jpg" class="photo">
                 <h3>Abhigyan Singh Yadav</h3>
                 <p>Reg No: 229303074</p>
             </div>
 
             <!-- Member 3 -->
             <div class="member-card">
-                <div class="photo">Add Image Here</div>
+                <img src="images/abhay.jpg" class="photo">
                 <h3>Abhay Singh</h3>
                 <p>Reg No: 229303368</p>
             </div>
 
             <!-- Member 4 -->
             <div class="member-card">
-                <div class="photo">Add Image Here</div>
+                <img src="images/vansh.jpg" class="photo">
                 <h3>Vansh Giri</h3>
                 <p>Reg No: 229303045</p>
             </div>
@@ -48,36 +49,41 @@
         </div>
     </section>
 
+    <!-- INFO SECTION -->
     <section class="info-section">
         <h2>Project Information</h2>
 
-        <div class="info-card">
-            <h3>📍 Running Port</h3>
-            <p>Currently running on:</p>
-            <p class="highlight">http://localhost:9090</p>
-            <p>(Docker container → Nginx / Node.js → host port 9090)</p>
-        </div>
+        <div class="info-grid">
 
-        <div class="info-card">
-            <h3>⚙️ Tech Stack Used</h3>
-            <ul>
-                <li>Jenkins (CI/CD Pipeline)</li>
-                <li>Docker (Containerization)</li>
-                <li>GitHub (Version Control)</li>
-                <li>HTML + CSS (Frontend Website)</li>
-                <li>Optional: Node.js + Express.js</li>
-            </ul>
-        </div>
+            <div class="info-card">
+                <h3>Running Port</h3>
+                <p>Website is live on:</p>
+                <p class="highlight">http://localhost:9090</p>
+                <p>(Docker container → Node.js → Host Port 9090)</p>
+            </div>
 
-        <div class="info-card">
-            <h3>🚀 Deployment Pipeline</h3>
-            <ul>
-                <li>Stage 1: Checkout Code from GitHub</li>
-                <li>Stage 2: Build Docker Image</li>
-                <li>Stage 3: Run Container</li>
-                <li>Stage 4: Verify Deployment</li>
-                <li>Automated using Jenkins Declarative Pipeline</li>
-            </ul>
+            <div class="info-card">
+                <h3>Tech Stack Used</h3>
+                <ul>
+                    <li>Jenkins (CI/CD Pipeline)</li>
+                    <li>Docker (Containerization)</li>
+                    <li>GitHub (Version Control)</li>
+                    <li>HTML + CSS (Frontend)</li>
+                    <li>Node.js + Express.js (Backend)</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h3>Deployment Pipeline</h3>
+                <ul>
+                    <li>Stage 1: Checkout Code from GitHub</li>
+                    <li>Stage 2: Build Docker Image</li>
+                    <li>Stage 3: Run Container</li>
+                    <li>Stage 4: Verify Deployment</li>
+                    <li>Automated using Jenkins Declarative Pipeline</li>
+                </ul>
+            </div>
+
         </div>
     </section>
 
