@@ -19,11 +19,8 @@ pipeline {
         stage('Run Container') {
             steps {
                 script {
-                    // Stop old container (Windows batch equivalent)
                     bat 'docker rm -f static-container || true'
-
-                    // Run new container
-                    bat 'docker run -d -p 8080:80 --name static-container jenkins-static-site'
+                    bat 'docker run -d -p 9090:80 --name static-container jenkins-static-site'
                 }
             }
         }
@@ -31,11 +28,8 @@ pipeline {
         stage('Verify Deployment') {
             steps {
                 script {
-                    // Sleep on Windows
                     bat 'ping 127.0.0.1 -n 3 > nul'
-
-                    // Check site using PowerShell curl (Invoke-WebRequest)
-                    bat 'powershell -Command "(Invoke-WebRequest http://localhost:8080).StatusCode"'
+                    bat 'powershell -Command "(Invoke-WebRequest http://localhost:9090).StatusCode"'
                 }
             }
         }
