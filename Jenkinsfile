@@ -19,11 +19,11 @@ pipeline {
         stage('Run Container') {
             steps {
                 script {
-                    // Stop old container
-                    sh 'docker rm -f static-container || true'
+                    // Stop old container (Windows batch equivalent)
+                    bat 'docker rm -f static-container || true'
 
-                    // Start new container
-                    sh 'docker run -d -p 8080:80 --name static-container jenkins-static-site'
+                    // Run new container
+                    bat 'docker run -d -p 8080:80 --name static-container jenkins-static-site'
                 }
             }
         }
@@ -31,8 +31,11 @@ pipeline {
         stage('Verify Deployment') {
             steps {
                 script {
-                    sh "sleep 3"
-                    sh "curl -I http://localhost:8080"
+                    // Sleep on Windows
+                    bat 'ping 127.0.0.1 -n 3 > nul'
+
+                    // Check site using PowerShell curl (Invoke-WebRequest)
+                    bat 'powershell -Command "(Invoke-WebRequest http://localhost:8080).StatusCode"'
                 }
             }
         }
@@ -40,7 +43,7 @@ pipeline {
 
     post {
         success {
-            echo '🚀 Static website deployed using Docker!'
+            echo '🚀 Website deployed successfully using Docker!'
         }
         failure {
             echo '❌ Deployment failed!'
